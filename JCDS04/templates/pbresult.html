@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Battle</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><img src= "{{hasilpoke1['sprites']['front_default']}}"></td>
+            <td><h3>{{poke1}}</h3></td>
+            <td>><img src= "http://localhost:5000/storage/vs.png" height="50" width="50"></td>
+            <td><h3>{{poke2}}</h3></td>
+            <td><img src= "{{hasilpoke2['sprites']['front_default']}}"></td>
+        </tr>
+    
+        <tr>
+            <td><div id='hp'><center>HP</div></center></td>
+            <td><div id='atk'><center>Atk</center></div></td>
+            <td><div id='def'><center>Def</center></div></td>
+            <td><div id='spa'><center>SP Attack</center></div></td>
+            <td><div  id='spd'><center>SP Def</center></div></td>
+            <td><div id='speed'><center>Speed</center></div></td>
+        </tr>
+    </table>
+    <p>Winner = {{winner}}</p>
+    <p>Probability = {{proba}} %</p>
+
+    <form action="http://localhost:5000/">
+        <button type="submit">Kembali</button>
+     </form>
+</body>
+
+<!-- jquery-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!--d3.js -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script>
+    var chart = {{plotJSONhp | safe}}
+    var layout = {autosize: false, width: 200, height: 300,  margin: {l: 30,r: 30, b: 30,t: 30,pad: 4}}
+    Plotly.plot('hp',chart,layout)
+    var chart2 = {{plotJSONatk | safe}}
+    Plotly.plot('atk',chart2,layout)
+    var chart3 = {{plotJSONdef | safe}}
+    Plotly.plot('def',chart3,layout)
+    var chart4 = {{plotJSONspa | safe}}
+    Plotly.plot('spa',chart4,layout)
+    var chart5 = {{plotJSONspd | safe}}
+    Plotly.plot('spd',chart5,layout)
+    var chart6 = {{plotJSONspeed | safe}}
+    Plotly.plot('speed',chart6,layout)
+</script>
+
+</html>
